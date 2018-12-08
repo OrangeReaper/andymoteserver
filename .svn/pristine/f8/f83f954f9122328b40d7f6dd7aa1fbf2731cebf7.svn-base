@@ -1,0 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   constants.h
+ * Author: andy
+ *
+ * Created on 14 July 2018, 18:17
+ */
+
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+const static std::string lircDir = "/etc/lirc/lircd.conf.d/";
+
+#endif /* CONSTANTS_H */
+

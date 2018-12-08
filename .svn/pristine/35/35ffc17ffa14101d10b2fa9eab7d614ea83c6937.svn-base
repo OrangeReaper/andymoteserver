@@ -1,0 +1,67 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clKeySeqResponder.cpp
+ * Author: andy
+ * 
+ * Created on 08 August 2018, 14:35
+ */
+
+#include "clKeySeqResponder.h"
+#include "json.hpp"
+#include <thread>
+#include <chrono>
+
+clKeySeqResponder::clKeySeqResponder() {
+}
+
+clKeySeqResponder::clKeySeqResponder(const clKeySeqResponder& orig) {
+}
+
+clKeySeqResponder::~clKeySeqResponder() {
+}
+
+void clKeySeqResponder::getResponse(nlohmann::json &jReply, nlohmann::json &jKeySeq){   
+
+    nlohmann::json jArray=jKeySeq.at("keySeqArray"); 
+    if (jArray.is_array()){
+        std::cout << "Array: " << jArray.dump() << std::endl;
+        // iterate the array
+        //for (nlohmann::json::iterator it = jArray.begin(); it != jArray.end(); ++it) {
+        for (nlohmann::json& x : jArray){    
+            //std::cout << "Iterator: " << *it << '\n';
+            std::cout << "Item: " << x << '\n';
+            std::string device = x.at("device");
+            std::string function = x.at("keyFunction");
+            int delay = x.at("mode");
+//            std::cout << "Device: " << device << '\n';
+//            std::cout << "Function: " << function << '\n';
+//            std::cout << "Mode: " << delay << '\n';
+
+            if (delay==0) {delay=50;}
+                //if (!lirc_send_key(device, function)){
+            if (!lirc_start_sending(device, function)){
+                onError(jReply, "KeySeq Transmit Failed");
+                break;
+            } else {
+                std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+                if (!lirc_stop_sending(device, function)){
+                   onError(jReply, "KeySeq Stop Transmit Failed");
+                    break;  
+                }
+            }
+            
+        }
+    } else {
+        onError(jReply, "Invalid KeySeq Request");
+    }
+}
+
+       
+
+
+

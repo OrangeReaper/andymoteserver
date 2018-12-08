@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   main.cpp
+ * Author: andy
+ *
+ * Created on 25 June 2018, 15:56
+ */
+
+
+
+#include <cstdlib>
+#include <iostream> //for cout
+//#include "TCPServer.h"
+//#include "lirc/lirc_client.h"
+#include "clServer.h"
+#include "utils.h"
+
+//TCPServer server;
+
+
+
+
+
+/*
+ * 
+ */
+int main(int argc, char** argv) {
+
+//    int fd;//File descriptor for lircd socket'
+//    fd = lirc_get_local_socket(NULL, 0);
+    lirc_init();
+    if (fd < 0) {
+        // Process error
+        std::cout << "Error occurred getting LIRC local socket"<< std::endl;
+        return 1;
+    } else {
+//        //lirc_send_one(, "name of remote", "Key symbol") 
+////was        if (lirc_send_one(fd, "LGBP630", "KEY_POWER") == -1) {
+//        if (mylirc_send_one(fd, "LGBP630", "KEY_POWER") == -1) {
+//            // Process errors
+//            std::cout << "Attempt to transmit failed"<< std::endl;
+//            return 1;
+//        }
+    }
+    std::cout << "Success"<< std::endl;
+    
+//    if (lirc_send_start(fd, "LGBP630", "KEY_POWER") == -1) {
+//            // Process errors
+//            std::cout << "Attempt to start sending failed"<< std::endl;
+//            return 1;
+//        }
+//    
+//    if (lirc_send_stop(fd, "LGBP630", "KEY_POWER") == -1) {
+//        // Process errors
+//        std::cout << "Attempt to stop sending failed"<< std::endl;
+//        return 1;
+//    }
+    
+    clServer server =  clServer();
+    server.runServer(12123);
+    
+    
+    
+  
+    return 0;
+}
+
+
+

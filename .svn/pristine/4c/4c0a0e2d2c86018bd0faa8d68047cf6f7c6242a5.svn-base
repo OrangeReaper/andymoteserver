@@ -1,0 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clKeySeqResponder.h
+ * Author: andy
+ *
+ * Created on 08 August 2018, 14:35
+ */
+
+#ifndef CLKEYSEQRESPONDER_H
+#define CLKEYSEQRESPONDER_H
+
+#include "json.hpp"
+#include "utils.h"
+
+class clKeySeqResponder {
+public:
+    clKeySeqResponder();
+    clKeySeqResponder(const clKeySeqResponder& orig);
+    virtual ~clKeySeqResponder();
+    static void getResponse(nlohmann::json &jReply, nlohmann::json &jKeySeq);
+private:
+
+};
+
+#endif /* CLKEYSEQRESPONDER_H */
+

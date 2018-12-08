@@ -1,0 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clStopSending.h
+ * Author: andy
+ *
+ * Created on 09 August 2018, 10:00
+ */
+
+#ifndef CLSTOPSENDING_H
+#define CLSTOPSENDING_H
+
+#include "utils.h"
+
+class clStopSending {
+public:
+    clStopSending();
+    clStopSending(const clStopSending& orig);
+    virtual ~clStopSending();
+    static bool getResponse(nlohmann::json &jReply, nlohmann::json &jLircKey);
+private:
+
+};
+
+#endif /* CLSTOPSENDING_H */
+

@@ -1,0 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clGetRemotesResponder.h
+ * Author: andy
+ *
+ * Created on 14 July 2018, 15:58
+ */
+
+#ifndef CLGETREMOTESRESPONDER_H
+#define CLGETREMOTESRESPONDER_H
+
+#include "json.hpp"
+
+class clGetRemotesResponder {
+public:
+    clGetRemotesResponder();
+    clGetRemotesResponder(const clGetRemotesResponder& orig);
+    virtual ~clGetRemotesResponder();
+    static void getResponse(nlohmann::json &jReply);
+private:
+
+
+};
+
+#endif /* CLGETREMOTESRESPONDER_H */
+

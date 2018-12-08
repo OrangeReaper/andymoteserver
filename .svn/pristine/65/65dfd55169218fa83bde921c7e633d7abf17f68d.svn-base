@@ -1,0 +1,82 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clKeySeqResponder.cpp
+ * Author: andy
+ * 
+ * Created on 08 August 2018, 14:35
+ */
+
+#include "clKeySeqResponder.h"
+#include "json.hpp"
+#include <thread>
+#include <chrono>
+
+clKeySeqResponder::clKeySeqResponder() {
+}
+
+clKeySeqResponder::clKeySeqResponder(const clKeySeqResponder& orig) {
+}
+
+clKeySeqResponder::~clKeySeqResponder() {
+}
+
+void clKeySeqResponder::getResponse(nlohmann::json &jReply, nlohmann::json &jKeySeq){   
+
+    nlohmann::json jArray=jKeySeq.at("keySeqArray"); 
+    if (jArray.is_array()){
+//        std::cout << "Array: " << jArray.dump() << std::endl;
+        // iterate the array
+        //for (nlohmann::json::iterator it = jArray.begin(); it != jArray.end(); ++it) {
+        bool firstTime=true;
+        for (nlohmann::json& x : jArray){
+            //wait 50ms between keys...
+            if (!firstTime) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(50));
+                firstTime=false;
+            }
+            //std::cout << "Iterator: " << *it << '\n';
+ //           std::cout << "Item: " << x << '\n';
+            std::string device = x.at("lircName");
+            std::string function = x.at("transmitCode");
+            int delay = x.at("duration");
+//            std::cout << "Device: " << device << '\n';
+//            std::cout << "transmitCode: " << function << '\n';
+//            std::cout << "duration: " << delay << '\n';
+            if (function.compare("WAIT") == 0){
+                //std::cout << str1 << " is  " << str2 << '\n';
+                std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+            } else {
+                if (delay==0) {delay=50;}
+                if (delay==-1){
+                    if (!lirc_send_key(device.c_str(), function.c_str())){
+                        onError(jReply, "KeySeq Send One Failed");
+                        break;
+                    }
+                } else {   
+                    if (!lirc_start_sending(device, function)){
+                        onError(jReply, "KeySeq Start Sending Failed");
+                        break;
+                    } else {
+                        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+                        if (!lirc_stop_sending(device, function)){
+                           onError(jReply, "KeySeq Stop Sending Failed");
+                            break;  
+                        }
+                    }
+                }
+            }
+        }
+    } else {
+        onError(jReply, "Invalid KeySeq Request");
+    }
+}
+
+       
+
+
+

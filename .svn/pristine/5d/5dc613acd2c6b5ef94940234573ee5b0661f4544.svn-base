@@ -1,0 +1,34 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clStopSending.cpp
+ * Author: andy
+ * 
+ * Created on 09 August 2018, 10:00
+ */
+
+#include "clStopSending.h"
+
+clStopSending::clStopSending() {
+}
+
+clStopSending::clStopSending(const clStopSending& orig) {
+}
+
+clStopSending::~clStopSending() {
+}
+bool clStopSending::getResponse(nlohmann::json &jReply, nlohmann::json &jLircKey){   
+    std::cout << "Stopping lircKey: " << jLircKey.dump() << std::endl;
+    std::string device = jLircKey.at("device");
+    std::string function = jLircKey.at("keyFunction");
+    if (!lirc_stop_sending(device, function)){
+        onError(jReply, "Stop Sending Failed");
+    } 
+    return false;
+
+}
+

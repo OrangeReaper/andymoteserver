@@ -1,0 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clStartSending.cpp
+ * Author: andy
+ * 
+ * Created on 09 August 2018, 10:00
+ */
+
+#include "clStartSending.h"
+
+clStartSending::clStartSending() {
+}
+
+clStartSending::clStartSending(const clStartSending& orig) {
+}
+
+clStartSending::~clStartSending() {
+}
+bool clStartSending::getResponse(nlohmann::json &jReply, nlohmann::json &jLircKey){   
+//    std::cout << "Sending lircKey: " << jLircKey.dump() << std::endl;
+    std::string device = jLircKey.at("device");
+    std::string function = jLircKey.at("keyFunction");
+    if (!lirc_start_sending(device, function)){
+        onError(jReply, "Start Sending Failed");
+        return false;//just in case?
+    } else {
+        return true;
+    }
+}
+       
+

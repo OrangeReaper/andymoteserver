@@ -1,0 +1,56 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clReadMessage.cpp
+ * Author: andy
+ * 
+ * Created on 09 July 2018, 10:01
+ */
+
+#include "clReadMessage.h"
+
+#include <unistd.h>
+
+clReadMessage::clReadMessage() {
+}
+
+clReadMessage::clReadMessage(const clReadMessage& orig) {
+}
+
+clReadMessage::~clReadMessage() {
+}
+std::string clReadMessage::readMessage(int connectionfd){
+    // Protocol -- 
+    //      8byte header containing length of message (lm)
+    //      lm payload
+    return readFromSocket(connectionfd, readPayloadLength(connectionfd));
+    
+}
+int clReadMessage::readPayloadLength(int connectionfd){
+    std::string hexSize=readFromSocket(connectionfd, 8);
+    if (hexSize.length() == 0) return 0;
+    
+    const char *hexstring = hexSize.c_str() ;
+    int result = (int)strtol(hexstring, NULL, 16);
+    return result;
+
+}
+std::string clReadMessage::readFromSocket(int connectionfd, int size){    
+    std::string result="";
+    if (size > 0) {
+        char data[size];
+        if(read(connectionfd, data, size) < 0){
+            error = SOCKET_READ_FAIL;
+        } else {
+            std::string s(data, sizeof(data));
+            result=s;
+        }
+    }    
+    return result;
+} 
+   
+

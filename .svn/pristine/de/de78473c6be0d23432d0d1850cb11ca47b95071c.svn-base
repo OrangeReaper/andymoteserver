@@ -1,0 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clServerResponder.h
+ * Author: andy
+ *
+ * Created on 10 July 2018, 17:29
+ */
+
+#ifndef CLSERVERRESPONDER_H
+#define CLSERVERRESPONDER_H
+
+#include <string>
+
+class clServerResponder {
+public:
+    clServerResponder();
+    clServerResponder(const clServerResponder& orig);
+    virtual ~clServerResponder();
+    std::string getResponse(std::string request);
+private:
+    std::string getReplyLength(int length);
+
+};
+
+#endif /* CLSERVERRESPONDER_H */
+

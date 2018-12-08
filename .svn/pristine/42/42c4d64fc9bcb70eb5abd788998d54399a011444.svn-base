@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>clGetRemotesResponder.h</itemPath>
+      <itemPath>clListKeysResponder.h</itemPath>
+      <itemPath>clReadMessage.h</itemPath>
+      <itemPath>clServer.h</itemPath>
+      <itemPath>clServerResponder.h</itemPath>
+      <itemPath>constants.h</itemPath>
+      <itemPath>requests.h</itemPath>
+      <itemPath>utils.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>clGetRemotesResponder.cpp</itemPath>
+      <itemPath>clListKeysResponder.cpp</itemPath>
+      <itemPath>clReadMessage.cpp</itemPath>
+      <itemPath>clServer.cpp</itemPath>
+      <itemPath>clServerResponder.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>/home/andy/NetBeansProjects/andymote</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>0</developmentMode>
+        </cTool>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>/usr/include/lirc</pElem>
+            <pElem>/usr/include/boost</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/andymote</output>
+          <linkerLibItems>
+            <linkerOptionItem>`pkg-config --libs lirc`</linkerOptionItem>
+            <linkerOptionItem>-lboost_system</linkerOptionItem>
+            <linkerOptionItem>-lboost_filesystem</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="clGetRemotesResponder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clGetRemotesResponder.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="clListKeysResponder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clListKeysResponder.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="clReadMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clReadMessage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="clServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="clServerResponder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clServerResponder.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="constants.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="requests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>0</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>/usr/include/lirc</pElem>
+            <pElem>/usr/include/boost</pElem>
+          </incDir>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>`pkg-config --libs lirc`</linkerOptionItem>
+            <linkerOptionItem>-lboost_system</linkerOptionItem>
+            <linkerOptionItem>-lboost_filesystem</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="clGetRemotesResponder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clGetRemotesResponder.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="clListKeysResponder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clListKeysResponder.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="clReadMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clReadMessage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="clServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="clServerResponder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clServerResponder.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="constants.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="requests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

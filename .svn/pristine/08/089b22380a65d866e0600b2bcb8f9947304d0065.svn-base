@@ -1,0 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   requests.h
+ * Author: andy
+ *
+ * Created on 14 July 2018, 16:00
+ */
+
+#ifndef REQUESTS_H
+#define REQUESTS_H
+
+    // Define SERVER REQUESTS
+    const static int TEST_CONNECTION = 0;
+    const static int GET_REMOTES = 1;
+
+#endif /* REQUESTS_H */
+

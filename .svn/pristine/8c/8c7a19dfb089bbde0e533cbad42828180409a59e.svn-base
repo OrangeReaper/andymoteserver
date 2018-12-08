@@ -1,0 +1,43 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clReadMessage.h
+ * Author: andy
+ *
+ * Created on 09 July 2018, 10:01
+ */
+
+#ifndef CLREADMESSAGE_H
+#define CLREADMESSAGE_H
+
+#include <string>
+
+class clReadMessage {
+public:
+    clReadMessage();
+    clReadMessage(const clReadMessage& orig);
+    virtual ~clReadMessage();
+    std::string readMessage(int connectionfd);
+
+    enum ERRORCODE {
+        NO_ERRORS, SOCKET_READ_FAIL, HEADER_READ_FAIL
+    };
+    
+    ERRORCODE getLastError() { return error; }
+
+private:
+    int readPayloadLength(int connectionfd);
+    std::string readFromSocket(int connectionfd, int size);
+    
+    
+    
+    ERRORCODE error = NO_ERRORS;
+
+};
+
+#endif /* CLREADMESSAGE_H */
+

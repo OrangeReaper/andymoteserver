@@ -1,0 +1,51 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   utils.h
+ * Author: andy
+ *
+ * Created on 14 July 2018, 18:36
+ */
+
+#ifndef UTILS_H
+#define UTILS_H
+
+#include "boost/filesystem.hpp"
+#include "json.hpp"
+
+struct path_leaf_string
+{
+    std::string operator()(const boost::filesystem::directory_entry& entry) const
+    {
+        return entry.path().leaf().string();
+    }
+};
+
+static void read_directory(const std::string& name, std::vector<std::string>& v)
+{
+    boost::filesystem::path p(name);
+    boost::filesystem::directory_iterator start(p);
+    boost::filesystem::directory_iterator end;
+    std::transform(start, end, std::back_inserter(v), path_leaf_string());
+}
+
+static bool stringContains(const std::string srcStr, std::string findStr){
+    if (srcStr.find(findStr) != std::string::npos) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+static void onError( nlohmann::json &jReply, const std::string &errorResponse){
+    jReply["fault"] = true;
+    jReply["error"] = errorResponse;
+}
+
+
+#endif /* UTILS_H */
+

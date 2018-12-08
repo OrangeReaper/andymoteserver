@@ -1,0 +1,92 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   clServerResponder.cpp
+ * Author: andy
+ * 
+ * Created on 10 July 2018, 17:29
+ */
+
+#include <vector>
+
+#include "clServerResponder.h"
+#include "json.hpp"
+#include "requests.h"
+#include "clGetRemotesResponder.h"
+#include "clListKeysResponder.h"
+#include "utils.h"
+
+
+
+clServerResponder::clServerResponder() {
+}
+
+clServerResponder::clServerResponder(const clServerResponder& orig) {
+}
+
+clServerResponder::~clServerResponder() {
+}
+std::string clServerResponder::getResponse(std::string request){
+    
+   nlohmann::json jRequest;
+   nlohmann::json jReply;
+   try {
+        jRequest = nlohmann::json::parse(request);
+        jReply["fault"] = false;
+        
+        int request = jRequest.at("id").get<int>();
+        switch (request){
+            case TEST_CONNECTION: {
+                break;
+            }
+            case GET_REMOTES: {
+                clGetRemotesResponder::getResponse(jReply);
+                break;
+            }
+            case LIST_KEYS: {
+                std::string remoteName = jRequest.at("payload").get<std::string>();
+                clListKeysResponder::getResponse(jReply, remoteName);
+                break;
+            }
+            default: {
+                onError(jReply, "Invalid Request");
+                
+                break;
+            }
+        }
+        
+        
+        
+        
+        
+    } catch (...) {
+        // request is not valid JSON
+        onError(jReply,"Invalid JSON Request");
+    }  
+    
+    std::string strReply = jReply.dump();
+    std::string replyLength = getReplyLength(strReply.length());
+    
+    std::cout << "Reply Length: " << replyLength << std::endl;
+    std::cout << "Reply: " << strReply << std::endl;
+    
+    std::string result = replyLength + strReply;
+    
+    return result;
+}
+std::string clServerResponder::getReplyLength(int length){
+    std::string result;
+    std::stringstream ss;
+    ss << std::hex << length;
+    ss >> result;
+    for (auto & c: result) c = toupper(c);
+    while (result.length() < 8 ) result = "0" + result;
+    
+    return result;
+    
+}
+
