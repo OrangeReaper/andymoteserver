@@ -3,7 +3,7 @@ C++ Server for AndyMOTE App
 
 AndyMOTE Server is part of the AndyMOTE Project.
 
-this project is **IN DEVELOPMENT**
+**THIS PROJECT IS IN DEVELOPMENT**
 
 The AndyMOTE Project's aim is to provide a 'Universal Remote Control' ie provide a single interface for
 multiple infra-red remote controls.
