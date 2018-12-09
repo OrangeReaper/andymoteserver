@@ -10,6 +10,6 @@ multiple infra-red remote controls.
 
 The AndyMOTE Server connects to an (Android) AndyMOTE App through a local network (See diagram).
 
-![AndyMOTE System Diagram](https://ibb.co/PGzkcGC)
+![AndyMOTE System Diagram](system.png)
 
 The Server connects to an LIRC subsystem which provides the infra-red signals that control the devices in your system.
